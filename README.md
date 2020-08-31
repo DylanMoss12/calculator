@@ -1,0 +1,1 @@
+For this project, I will be creating a calculator using JavaScript, HTML, and CSS. It should be able to divide, multiply, add, and subtract the clicked numbers.

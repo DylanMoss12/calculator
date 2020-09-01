@@ -150,6 +150,7 @@
         let displayValue1 = 0;
         let displayValue2 = 0;
         let operation = "";
+        let lastOperation = "";
 
         num.forEach((button) => {
             button.addEventListener("click", function() {
@@ -160,9 +161,16 @@
 
         action.forEach((button) => {
             button.addEventListener("click", function() {
-                display.innerHTML = "";
-                operation = button.id;
-                displayValue1 = Number(displayValue2); 
+                if (operation != "") {
+                    displayValue1 = operate(operation, displayValue1, displayValue2);
+                    operation = button.id;
+                    display.innerHTML = "";
+                }
+                else {
+                    display.innerHTML = "";
+                    operation = button.id;
+                    displayValue1 = Number(displayValue2); 
+                }
             });
         });
 
@@ -170,12 +178,14 @@
             display.innerHTML = operate(operation, displayValue1, displayValue2);
             displayValue1 = Number(displayValue2);
             displayValue2 = Number(display.innerHTML);
+            operation = "";
         });
 
         reset.addEventListener("click", function() {
             display.innerHTML = "";
             displayValue1 = 0;
             displayValue2 = 0;
+            operation = "";
         });
 
         del.addEventListener("click", function() {

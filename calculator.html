@@ -10,7 +10,7 @@
             border-width: 3px;
             border-color: black;
             border-radius: 5px;
-            width: 400px;
+            width: 600px;
             height: 500px;
         }
 
@@ -20,14 +20,14 @@
             justify-content: flex-end;
             background-color: rgb(113, 199, 113);
             width: 90%;
-            height: 90px;
+            height: 60px;
             margin-top: 30px;
             margin-bottom: 20px;
             border-style: solid;
             border-width: 3px;
             border-color: black;
             border-radius: 4px;
-            font-size: 60px;
+            font-size: 30px;
             font-family: arial;
         }
 
@@ -38,16 +38,16 @@
             justify-content: space-evenly;
             background-color: grey;
             width: 90%;
-            height: 50px;
+            height: 60px;
             margin-bottom: 10px;
-            margin-top: 5px;
+            margin-top: 0px;
         }
 
         .button {
             display: flex;
             background-color: orange;
-            width: 80px;
-            height: 50px;
+            width: 125px;
+            height: 60px;
             border-style: solid;
             border-width: 2px;
             border-color: black;
@@ -66,7 +66,7 @@
 
         .firstButton {
             display: flex;
-            width: 170px;
+            width: 260px;
         }
 
         .finalRow {
@@ -146,17 +146,30 @@
         let equal = document.querySelector("#equals");
         let reset = document.querySelector("#AC");
         let del = document.querySelector("#DEL");
+        let dot = document.querySelector("#dot")
 
         let displayValue1 = 0;
         let displayValue2 = 0;
         let operation = "";
-        let lastOperation = "";
 
         num.forEach((button) => {
             button.addEventListener("click", function() {
-                display.innerHTML += button.innerHTML;
-                displayValue2 = Number(display.innerHTML);
+                if (display.innerHTML.length >= 30) {
+                }
+                else {
+                    display.innerHTML += button.innerHTML;
+                    displayValue2 = Number(display.innerHTML);
+                }
             });
+        });
+
+        dot.addEventListener("click", function() {
+            if(display.innerHTML.includes('.')) {
+            }
+            else {
+                display.innerHTML += dot.innerHTML;
+                displayValue2 = Number(display.innerHTML);
+            }
         });
 
         action.forEach((button) => {
@@ -175,10 +188,14 @@
         });
 
         equal.addEventListener("click", function() {
-            display.innerHTML = operate(operation, displayValue1, displayValue2);
-            displayValue1 = Number(displayValue2);
-            displayValue2 = Number(display.innerHTML);
-            operation = "";
+            if (operation == "") {
+            }
+            else {
+                display.innerHTML = operate(operation, displayValue1, displayValue2);
+                displayValue1 = Number(displayValue2);
+                displayValue2 = Number(display.innerHTML);
+                operation = "";
+            }
         });
 
         reset.addEventListener("click", function() {
